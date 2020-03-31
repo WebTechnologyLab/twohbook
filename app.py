@@ -1,7 +1,7 @@
 import os
 from os.path import abspath, dirname
 
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -60,6 +60,7 @@ def home():
 def register_users():
     print(request.get_json())
     return render_template('index.html')
+
 @app.route('/api/tokens',methods=["POST"])
 def generate_tokens():
     pass
