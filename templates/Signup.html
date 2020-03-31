@@ -1,0 +1,86 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link rel="stylesheet" href="signin.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+ 
+    <script>
+        
+        $(document).ready(function(){
+            $("#signup").validate({
+            rules: {
+                uname:{
+                    required:true,
+                   
+                },
+                email:{
+                    required:true,
+                    email:true
+                },
+                phoneno:{
+                    number:true
+                },
+                password: {
+                    required:true},
+                cpassword: {
+                    equalTo: "#password"
+                }
+            },
+            messages: {
+                uname:{
+                required:"must contain only characters"},
+                password:"password should contain combiation of upper and lower case charaters,digit and special symbol",
+                cpassword: " Enter Confirm Password Same as Password"
+
+
+            }
+        });
+        });
+    </script>
+
+</head>
+<body>
+    <h1>bhosadiwale</h1>
+   <div id="root"></div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script><script type="text/babel">
+   class Signup extends React.Component {
+ 
+       render() {
+           return(
+           <div className="form">
+            
+              <div className="thumbnail"><img src="logo.jpg"/></div>
+              <form className="register-form"  action="#" method="post" id="signup" onSubmit="return fvalidate();">
+          
+                 <input type="text" placeholder="name" name="uname" id="name" required /> 
+           
+                 <input type="email" placeholder="email address" name="email" id="email" required />
+          
+                 <input type="text" placeholder="phone no" name="phoneno" id="phoneno" required/>
+      
+                 <input type="password" placeholder="password" name="password" id="password" required/> 
+                 
+                 <input type="password" placeholder="confirm password" name="cpassword" required />
+                
+               <button >create</button>
+               <p className="message">Already registered?  <a href="signin.html">Sign In</a></p>
+               </form>
+               </div>
+              
+               
+            
+           );
+       }
+   }ReactDOM.render(
+       <Signup />,
+       document.getElementById('root')
+   );
+   </script>
+    </body>
+    
+  </html>
