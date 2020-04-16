@@ -1,0 +1,48 @@
+{%extends 'bootstrap/base.html'%}
+
+{%block title%}
+	{% if title%} {{title}} - TwoHBook
+	{%else%} Welcome to TwoHBook
+	{{%endif%}}
+{%endblock%}
+{%block navbar%}
+	<nav class="navbar navbar-default">
+	
+	</nav>
+{%endblock%}
+<!doctype html>
+<html lang="en">
+<head>
+ 	<meta charset="utf-8">
+	<title>TwoHBook</title>
+</head>
+<body>
+	<div>
+	TwoHBook:
+		<a href="#">Home</a>
+		{%if current_user.is_anonymous %}
+			<a href="{{url_for('index')}}">Login</a>
+		{%else%}
+			<a href="{{url_for('dashboard')}}">DashBoard</a>
+			<a href="{{url_for('starred')}}">Starred</a>
+			<a href="{{url_for('my_listings')}}">My Listing</a>
+			<a href="{{url_for('user', username=current_user.username)}}">Profile</a>
+			<a href="{{url_for('logout')}}">Logout</a>
+		{%endif%}
+	</div>
+	<hr>
+	{% with messages= get_flashed_messages()%}
+	{%if messages%}
+	<ul>
+		{%for message in messages%}
+		<li ><span style="color:red;">{{message}}</span></li>
+		{%endfor%}
+	</ul>
+	{%endif%}
+	{%endwith%}
+	<h1>Welcome to TwoHBook</h1>
+	{%block content%}
+	{%endblock%}
+</body>
+</html>
+

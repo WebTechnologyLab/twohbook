@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+{%block content%}
+	<h2>Hi, {{current_user.username}}</h2>
+	<h3>Listings</h3>
+	{% for post in posts%}
+	<p>
+	<img src="{{post.author.avatar(32)}}" alt="profile pic">
+	{%if post.author != current_user%}
+		{%if not current_user.is_starred(post)%}
+			<a href="{{url_for('star', postid=post.id)}}">Star</a>
+		{%else%}
+			<a href="{{url_for('unstar', postid=post.id)}}">Unstar</a>
+		{%endif%}
+	{%endif%}
+	<br>
+	{{post.author.username}} listed: <br>
+	Book Name: <b>{{post.book_name}}</b> <br>
+	Branch: <b>{{post.branch}}</b><br>
+	Year: <b>{{post.year}}</b><br>
+	Cost: <b>{{post.cost}}</b>
+	</p>
+	{%endfor%}
+	{%if prev_url%}
+		<a href="{{prev_url}}">Prev</a>
+	{%endif%}
+	{%if next_url%}
+		<a href="{{next_url}}">Next</a>
+	{%endif%}
+{%endblock%}

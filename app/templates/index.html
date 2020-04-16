@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "_render_field.html" import render_field%}
+{%block navbar%}
+	<a href="{{url_for('index')}}">Login</a>
+{%endblock%}
+{%block content%}
+	<form action="" method="POST" novalidate>
+		{{ form.csrf_token }}
+		
+		{{render_field(form.username)}}
+		{{render_field(form.password)}}
+
+	<p> {{form.remember_me()}}{{form.remember_me.label}}</p>
+	<p>{{form.submit()}}</p>
+	</form>
+	<b>Not a User? <a href="{{url_for('signup')}}">Sign up</a></b>
+{%endblock%}

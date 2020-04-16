@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+{%from "_render_field.html" import render_field%}
+{%block content%}
+	<form action="" method="POST">
+		{{form.csrf_token}}
+		{{render_field(form.username)}}
+		{{render_field(form.college)}}
+		{{render_field(form.branch)}}
+		{{render_field(form.year)}}
+
+		<p>{{form.submit()}}</p>
+	</form>
+{%endblock%}

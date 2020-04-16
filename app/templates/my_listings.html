@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{%block content%}
+<h2>My Listings [<a href="{{url_for('post')}}">Add post</a>]</h2>
+	{%if posts%}
+		{%for post in posts%}
+			<p>
+			Book Name:{{post.book_name}}<br>
+			Branch: {{post.branch}}<br>
+			Year: {{post.year}}<br>
+			Cost: {{post.cost}}<br>
+			</p>
+		{%endfor%}
+	{%else%}
+		<p>You haven't listed any book!</p>
+	{%endif%}
+	{%if prev_url%}
+		<a href="{{prev_url}}">Prev</a>
+	{%endif%}
+	{%if next_url%}
+		<a href="{{next_url}}">Next</a>
+	{%endif%}
+{%endblock%}
+
+

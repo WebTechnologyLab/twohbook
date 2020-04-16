@@ -1,0 +1,19 @@
+{%extends "base.html"%}
+{%from "_render_field.html" import render_field%}
+{%block content%}
+	<form action="" method="POST" novalidate>
+		{{ form.csrf_token }}
+
+		{{render_field(form.username)}}
+		{{render_field(form.name)}}
+		{{render_field(form.college)}}
+		{{render_field(form.branch)}}
+		{{render_field(form.year)}}
+		{{render_field(form.email)}}
+		{{render_field(form.password)}}
+		{{render_field(form.repassword)}}
+
+		<p>{{form.submit()}}</p>
+	</form>
+	<b>Already a User?<a href="{{url_for('index')}}">Log In</a></b>
+	{%endblock%}

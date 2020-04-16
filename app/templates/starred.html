@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{%block content%}
+	{% for post in posts%}
+	<p>
+	<img src="{{post.author.avatar(32)}}" alt="profile pic">
+	<a href="{{url_for('unstar', postid=post.id)}}">Unstar</a><br>
+	{{post.author.username}} listed: <br>
+	Book Name: <b>{{post.book_name}}</b> <br>
+	Branch: <b>{{post.branch}}</b><br>
+	Year: <b>{{post.year}}</b><br>
+	Cost: <b>{{post.cost}}</b>
+	</p>
+	{%endfor%}
+{%endblock%}
