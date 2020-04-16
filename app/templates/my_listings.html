@@ -1,23 +1,32 @@
 {%extends "base.html"%}
-{%block content%}
+{%block app_content%}
 <h2>My Listings [<a href="{{url_for('post')}}">Add post</a>]</h2>
 	{%if posts%}
 		{%for post in posts%}
-			<p>
-			Book Name:{{post.book_name}}<br>
-			Branch: {{post.branch}}<br>
-			Year: {{post.year}}<br>
-			Cost: {{post.cost}}<br>
-			</p>
+		<table class="table table-hover">
+			<tr>
+				<td>
+					{{post.author.username}} listed: <br>
+					Book Name: <b>{{post.book_name}}</b> <br>
+					Branch: <b>{{post.branch}}</b><br>
+					Year: <b>{{post.year}}</b><br>
+					Cost: <b>{{post.cost}}</b>
+				</td>
+			</tr>
+		</table>
 		{%endfor%}
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+			{%if prev_url%}
+				<li class="page-item"><a class="page-link" href="{{prev_url}}">Previous</a></li>
+			{%endif%}
+			{%if next_url%}
+				<li class="page-item"><a class="page-link" href="{{next_url}}">Next</a></li>
+			{%endif%}
+		  </ul>
+		</nav>
 	{%else%}
-		<p>You haven't listed any book!</p>
-	{%endif%}
-	{%if prev_url%}
-		<a href="{{prev_url}}">Prev</a>
-	{%endif%}
-	{%if next_url%}
-		<a href="{{next_url}}">Next</a>
+		<p> You haven't listed any book yet!</p>
 	{%endif%}
 {%endblock%}
 

@@ -1,15 +1,12 @@
 {%extends "base.html"%}
+{% import 'bootstrap/wtf.html' as wtf%}
 {%from "_render_field.html" import render_field%}
-{%block content%}
+{%block app_content%}
 <h3>Add a listing</h3>
-<form action="" method="POST">
-		{{form.csrf_token}}
-
-		{{render_field(form.book_name)}}
-		{{render_field(form.branch)}}
-		{{render_field(form.year)}}
-		{{render_field(form.cost)}}
-
-		<p>{{form.submit}} <input type="reset"></p>
+	<div class"row">
+		<div class="col-md-4">
+			{{wtf.quick_form(form)}}
+		</div>
+	</div>
 </form>
 {%endblock%}

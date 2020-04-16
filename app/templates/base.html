@@ -3,46 +3,44 @@
 {%block title%}
 	{% if title%} {{title}} - TwoHBook
 	{%else%} Welcome to TwoHBook
-	{{%endif%}}
-{%endblock%}
-{%block navbar%}
-	<nav class="navbar navbar-default">
-	
-	</nav>
-{%endblock%}
-<!doctype html>
-<html lang="en">
-<head>
- 	<meta charset="utf-8">
-	<title>TwoHBook</title>
-</head>
-<body>
-	<div>
-	TwoHBook:
-		<a href="#">Home</a>
-		{%if current_user.is_anonymous %}
-			<a href="{{url_for('index')}}">Login</a>
-		{%else%}
-			<a href="{{url_for('dashboard')}}">DashBoard</a>
-			<a href="{{url_for('starred')}}">Starred</a>
-			<a href="{{url_for('my_listings')}}">My Listing</a>
-			<a href="{{url_for('user', username=current_user.username)}}">Profile</a>
-			<a href="{{url_for('logout')}}">Logout</a>
-		{%endif%}
-	</div>
-	<hr>
-	{% with messages= get_flashed_messages()%}
-	{%if messages%}
-	<ul>
-		{%for message in messages%}
-		<li ><span style="color:red;">{{message}}</span></li>
-		{%endfor%}
-	</ul>
 	{%endif%}
-	{%endwith%}
-	<h1>Welcome to TwoHBook</h1>
-	{%block content%}
-	{%endblock%}
-</body>
-</html>
+{%endblock%}
 
+{%block navbar%}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+					<a class="navbar-brand" href="{{url_for('dashboard')}}">TwoHBook</a>
+				<div class="collapse navbar-collapse" id="example-collapse" >
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="{{url_for('dashboard')}}">Home</a></li>
+						{%if current_user.is_anonymous%}
+							<li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Login</a></li>
+						{%else%}
+							<li class="nav-item"><a class="nav-link" href="{{url_for('starred')}}">Starred</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{url_for('my_listings')}}">My Listing</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{url_for('user', username=current_user.username)}}">Profile</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Logout</a></li>
+						{%endif%}
+					</ul>
+				</div>
+			</div>
+		</nav>
+{%endblock%}
+
+{%block content%}
+	<div class="container"></div>
+		{% with messages= get_flashed_messages()%}
+		{%if messages%}
+			{%for message in messages%}
+				<div class="alert alert-info" role="alert">{{message}}</div>
+			{%endfor%}
+		{%endif%}
+		{%endwith%}
+
+		{%block app_content%} {%endblock%}
+{%endblock%}
+
+{%block scripts%}
+	{{super()}}
+	{{ moment.include_moment() }}
+{%endblock%}
