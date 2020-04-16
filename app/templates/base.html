@@ -16,6 +16,15 @@
 						{%if current_user.is_anonymous%}
 							<li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Login</a></li>
 						{%else%}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ url_for('messages') }}">
+								Messages
+								{% set new_messages = current_user.new_message() %}
+								{% if new_messages %}
+								<span class="badge">{{ new_message }}</span>
+								{% endif %}
+								</a> 
+							</li>
 							<li class="nav-item"><a class="nav-link" href="{{url_for('starred')}}">Starred</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{url_for('my_listings')}}">My Listing</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{url_for('user', username=current_user.username)}}">Profile</a></li>

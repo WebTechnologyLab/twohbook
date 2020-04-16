@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField, SelectField, SubmitField, IntegerField
+from wtforms import StringField, BooleanField, PasswordField, SelectField, \
+        SubmitField, IntegerField, TextAreaField
 from wtforms.validators import ValidationError, InputRequired, Email, EqualTo, Length
 from app.models import User
 from flask_login import current_user
@@ -56,3 +57,8 @@ class PostForm(FlaskForm):
     branch = SelectField('Branch',choices=[('cse','CSE'),('entc','ENTC'),('it','IT')],validators=[InputRequired()])
     cost = IntegerField('Cost',validators=[InputRequired()])
     submit = SubmitField('Post')
+
+class MessageForm(FlaskForm):
+    message = TextAreaField('Message', \
+            validators = [InputRequired(), Length(min=0, max=150)])
+    submit = SubmitField('Send')

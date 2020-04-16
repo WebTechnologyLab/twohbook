@@ -14,6 +14,14 @@
 						<a href="{{url_for('unstar', postid=post.id)}}">Unstar</a>
 					{%endif%}
 				{%endif%}
+				{% if post.author != current_user %}
+					<p>
+							<a href="{{ url_for('send_message',
+																	recipient=post.author.username) }}">
+								Message
+							</a>
+					</p>
+				{% endif %}
 			</td>
 			<td>
 				{{post.author.username}} listed: <br>
